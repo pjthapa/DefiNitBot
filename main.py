@@ -3,28 +3,41 @@ from comment_handler import check_for_read, log_post
 from inbox_handler import check_opted_user, log_user, get_user_wallet
 from algorand_interface import tip_finite
 # driver code
+
 def main():
+    tip_bot_page = ""                                                                                                   #add the algoexplorer.io link for the tip bot address once created
+    bot_instruction_page = ""
     # read unread inbox message for "opt in".
     unread_messages = get_message()
+
     for message in unread_messages:
         try:
-            print(message.body.lower())
             if message.subject.lower() == "opt in":
                 user = message.author
                 if not check_opted_user(user):
-                    user_wallet_address = message.subject.body
+                    user_wallet_address = message.body
+
                     log_user(user.name, user_wallet_address)
-                    send_message(user, ("appropriate message here"))                                                    # This needs to be formatted better
+
+                    send_message(user, (f"Your wallet {user_wallet_address} has been opted in for the tipbot! \n\n"
+                                        f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}"))            # This needs to be formatted better
 
                 else:
-                    send_message(user, "You have already opted in to the Defi-Nite Tipbot")                             # same thing here!
+                    send_message(user, "You have already opted in to the Defi-Nite Tipbot. "
+                                      f"Were you looking for other commands? You can view them here at \n\n "
+                                       f"{bot_instruction_page} \n\n "
+                                       f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}")
 
             else:
-                send_message(user, "The bot cannot understand that command. Go here for a list of commands ->")         # format this message
+                send_message(user, f"The bot cannot understand that command. Go here for a "
+                                   f"list of commands ->{bot_instruction_page} \n\n"
+                                   f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}")                  # format this message
+
             message.mark_read()                                                                                         # this needs to be a function of its own
 
         except:
-            print("error creating wallet")
+            message.mark_read()                                                                                           # create a function to log the errors: The functions should log the timestamp, the message and the user that made the message.
+            print(f"Issue with reading this message {message.body} from {user.name}")
 
     # read comments for "!nite them!"
     for sub in subreddit:
@@ -51,8 +64,8 @@ def main():
                             sender_address = "GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY"
 
                             try:
-                                # tip_finite(sender_key, sender_address, wallet_to_tip, 389093723
-                                pass                                                                                    # change this back once lower is fixed
+                                tip_finite(sender_key, sender_address, wallet_to_tip, 389093723)                        #currently tipping shiva inu
+                                                                                                                        # change this back once lower is fixed
                             except:
                                 print("tipping error")
                             send_message(parent_name, f"{tipping_username} tipped you with 1 Finite ASA. Find out more about this ->")
@@ -71,4 +84,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()

@@ -1,1 +1,1 @@
-{"Data": [["username1", "wallet1"], ["username2", "wallet_2"], ["royalrivet", "DP4HEGUQYDN4NDIG3EX4TXAZJ6ARH62276ZXYHO7WJLPMZIZ7H3NZFNYPM"]]}
+{"Data": [["username1", "wallet1"], ["username2", "wallet_2"], ["royalrivet", "DP4HEGUQYDN4NDIG3EX4TXAZJ6ARH62276ZXYHO7WJLPMZIZ7H3NZFNYPM"], ["schmoopie20", "XLHCH6XQAOYVVY44GNIZGEXA3QRPKUZEL7262IN2NH3MZEPMSZ47DB5KIE"]]}
