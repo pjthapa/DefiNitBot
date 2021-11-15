@@ -50,6 +50,3 @@ def random_data_logger(user_sending:str, user_recieving:str, timestamp:str, tran
     data.update(new_data)
     with open("random_data.txt", "w") as outfile:
         json.dump(data, outfile)
-
-
-random_data_logger("ram", "shyam", "12:30", "yes")
