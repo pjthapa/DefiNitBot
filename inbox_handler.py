@@ -30,3 +30,10 @@ def get_user_wallet(username) -> str:
         if username in user[0]:
             return user[1]
 
+def log_errors(description:str, timestamp:str) -> None:
+    with open("errors.txt", "r") as infile:
+        data = json.load(infile)
+
+    with open("errors.txt", "w") as outfile:
+        data.update({timestamp:description})
+        json.dump(data, outfile)

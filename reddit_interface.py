@@ -1,4 +1,5 @@
 import praw
+import json
 # """
 # reddit file that interacts with the reddit API using praw.
 # """
@@ -51,7 +52,22 @@ def send_message(user: str, message: str) -> None:
     subject = "Tip bot testnet"
     reddit.redditor(user).message(subject, message)
 
-subreddit = ["pjt"]
+def log_tip_timestamp(user:str, timestamp:str) ->None:
+    with open ("user_log.txt", "r") as infile:
+        data = json.load(infile)
 
+    with open("user_log.txt", "w") as outfile:
+        data[user] = timestamp
+        json.dump(data, outfile)
 
+# def previous_tip_timestamp(user:str) -> str:                                                                          #redundat function. handled in utilities
+#     with open("user_log.txt", "r") as infile:
+#         data = json.load(infile)
+#     try:
+#         timestamp = data[user]
+#         return timestamp
+#     except:
+#         return "First time tipping"
+
+subreddit = ["finite_asa"]                                                                                                    # add subreddits where this is possible please
 

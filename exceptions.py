@@ -1,1 +1,0 @@
-class InvalidOptInError(Exception):

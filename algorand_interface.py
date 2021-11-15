@@ -100,7 +100,7 @@ def opt_in(account_address, account_key, asset_id):
         # print_asset_holding(algod_client, account_address, asset_id)
 
 
-def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267 ) -> tuple:
+def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267, tip_amount = 0 ) -> tuple:
     """
     :param sender_key: private key that needs to be acquired locally
     :param account_to_tip: 10 DefiNite
@@ -123,7 +123,7 @@ def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267 
         sender=sender,
         sp=params,
         receiver=account_to_tip,
-        amt=10,
+        amt=tip_amount,
         index=asset_id,
         note="deFinite Tip Bot"
     )
@@ -132,7 +132,7 @@ def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267 
     # Wait for the transaction to be confirmed
     wait_for_confirmation(algod_client, txid, 5)
     # The balance should now be 10.
-    return txid, account_to_tip
+    return txid
 
 
 
@@ -147,4 +147,11 @@ def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267 
 # #
 # # tip_finite(sender_key, sender_address, "XE5Y4QFW6E7N6DEFZ6UYKC3CHI7CMEQWEDSVMQIWJRQV2S5YWFGV6SDJMA", asset_id=shiva_inu_id)
 # # #
-# opt_in("DP4HEGUQYDN4NDIG3EX4TXAZJ6ARH62276ZXYHO7WJLPMZIZ7H3NZFNYPM" , "wb2t3IAjB/1CQcP/VNudoM9TZNO4iEdHJIl42zo6PyEb+HIakMDbxo0G2S/J3BlPgRP7Wv+zfB3fslb2ZRn59g==", 400593267)
+# opt_in("GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY","QC/NiCyN7YtfiIKUQFAYfMw9YLfv0AZavS7Ts+0RIf0xL9864AAK2Qr9YJZgahm36iOCoNq5uxV5cMpal21MGA",
+#        "400593267")
+# try:
+#     tip_finite("wb2t3IAjB/1CQcP/VNudoM9TZNO4iEdHJIl42zo6PyEb+HIakMDbxo0G2S/J3BlPgRP7Wv+zfB3fslb2ZRn59g==","DP4HEGUQYDN4NDIG3EX4TXAZJ6ARH62276ZXYHO7WJLPMZIZ7H3NZFNYPM" ,
+#            "GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY", tip_amount=1)
+#
+# except:
+#     print()
