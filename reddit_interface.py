@@ -7,11 +7,11 @@ import json
 # create reddit instance
 
 reddit = praw.Reddit(
-    client_id="O4NyaSFtRiSCnQMRc691mA",
-    client_secret="1atyXnwEhwJyXLI_wX3aMAaOayAy-g",
+    client_id="NWI_kObDkstVoMc9uHZusg",
+    client_secret="vTZPRekojxLFEP9M-ZKqj17_I03eAQ",
     user_agent="A tip bot for the DefiNite community ASA on Algorad by u/DefiNiteASABot",
-    username="Botforpjt",
-    password="home135pj",
+    username="definiteasabot",
+    password="Nextcoastipa",
 )
 
 # check if reddit instance is writeable

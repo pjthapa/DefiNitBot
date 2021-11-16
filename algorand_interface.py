@@ -135,23 +135,3 @@ def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267,
     return txid
 
 
-
-#  check and instantialte all algorand interface with test wallets on the mainnet (working)
-# sender_address = "GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY"
-# sender_key = mnemonic.to_private_key("trend cruise dutch spot swallow title drill little barely donate around sick knee submit laundry special "
-#                                      "dolphin voice nuclear diamond swarm dutch trouble abstract space")
-# print(sender_key)
-# account_to_tip = "B5S5KFF7CNNMJCUDIZHUBIL5GZ6E3H66CZEBIPEBLCHWISWRQPFHTXBKAI"
-#
-# shiva_inu_id = "389093723"
-# #
-# # tip_finite(sender_key, sender_address, "XE5Y4QFW6E7N6DEFZ6UYKC3CHI7CMEQWEDSVMQIWJRQV2S5YWFGV6SDJMA", asset_id=shiva_inu_id)
-# # #
-# opt_in("GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY","QC/NiCyN7YtfiIKUQFAYfMw9YLfv0AZavS7Ts+0RIf0xL9864AAK2Qr9YJZgahm36iOCoNq5uxV5cMpal21MGA",
-#        "400593267")
-# try:
-#     tip_finite("wb2t3IAjB/1CQcP/VNudoM9TZNO4iEdHJIl42zo6PyEb+HIakMDbxo0G2S/J3BlPgRP7Wv+zfB3fslb2ZRn59g==","DP4HEGUQYDN4NDIG3EX4TXAZJ6ARH62276ZXYHO7WJLPMZIZ7H3NZFNYPM" ,
-#            "GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY", tip_amount=1)
-#
-# except:
-#     print()

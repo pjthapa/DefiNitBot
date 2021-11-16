@@ -8,11 +8,11 @@ from utilities import time_validity, get_current_time_string, random_number, ran
 
 def main():
     tip_bot_page = "https://algoexplorer.io/address/BOTPGC3PCPVJFAKG334DRA7XS2MPNJUWDVA4V6S6VGHORTTZN32QBTBC6E"                                                                                                   #add the algoexplorer.io link for the tip bot address once created
-    bot_instruction_page = "insert tip bot reddit instruction post page here"
-    asa_page = ""
+    bot_instruction_page = "https://www.reddit.com/r/Finite_ASA/comments/qu8bae/announicing_tip_bot/"
+    asa_page = "https://www.reddit.com/r/Finite_ASA/"
 
     # read unread inbox message for "opt in"
-    unread_messages = get_message();
+    unread_messages = get_message()
 
     for message in unread_messages:
         try:
@@ -30,14 +30,21 @@ def main():
 
                 else:
                     send_message(user.name, "You have already opted in to the Defi-Nite Tipbot. "
-                                      f"Were you looking for other commands? You can view them here at \n\n "
-                                       f"{bot_instruction_page} \n\n "
+                                      f"Were you looking to change the address you submitted? Message the bot with Change wallet"
+                                            f"as the subject and the wallet as the address."
                                        f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}")
 
-            else:
-                send_message(message.author.name, f"The bot cannot understand that command. Go here for a "
-                                   f"list of commands ->{bot_instruction_page} \n\n"
-                                   f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}")
+            # elif message.subject.lower == "change wallet":
+            #     user_wallet_address = message.body
+            #
+            #     log_user(user.name, user_wallet_address)
+            #
+            #     send_message(user.name, (f"Your wallet {user_wallet_address} has been opted in for the tipbot! \n\n"
+            #                              f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}"))
+
+                # send_message(message.author.name, f"The bot cannot understand that command. Go here for a "
+                #                    f"list of commands ->{bot_instruction_page} \n\n"
+                #                    f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}")
 
             message.mark_read()
 
@@ -69,17 +76,18 @@ def main():
                         if check_opted_user(parent_name):
                             wallet_to_tip = get_user_wallet(parent_name)
 
-                            sender_key = "QC/NiCyN7YtfiIKUQFAYfMw9YLfv0AZavS7Ts+0RIf0xL9864AAK2Qr9YJZgahm36iOCoNq5uxV5cMpal21MGA=="                                 # add central wallet address
-                            sender_address = "GEX56OXAAAFNSCX5MCLGA2QZW7VCHAVA3K43WFLZODFFVF3NJQMMRBDKVY"                                                           #change this too
+                            sender_key = "qqoUzHOFoPNc7JfNq1T/ZwR9ZBvok/lXJisn8gjFMF4LpvMLbxPqkoFG3vg4g/eWmPamlh1ByvpeqY7oznlu9Q=="                                 # add central wallet address
+                            sender_address = "BOTPGC3PCPVJFAKG334DRA7XS2MPNJUWDVA4V6S6VGHORTTZN32QBTBC6E"                                                           #change this too
 
                             current_time = get_current_time_string()
 
                             if time_validity(tipping_username, current_time):
                                 try:
-                                    tip_amount = random_number()
-                                    txid = tip_finite(sender_key, sender_address, wallet_to_tip, 389093723, tip_amount= tip_amount)                        #currently tipping shiva inu
+                                    random_number = random_number()
+                                    tip_amount = random_number * 100000000
+                                    txid = tip_finite(sender_key, sender_address, wallet_to_tip, "400593267", tip_amount= tip_amount)                        #currently tipping shiva inu
                                     send_message(parent_name,
-                                                 f"{tipping_username} tipped you with {tip_amount} Finite ASA. Find out more about this ASA-> {asa_page}")
+                                                 f"{tipping_username} tipped you with {random_number} Finite ASA. Find out more about this ASA-> {asa_page}")
                                     log_tip_timestamp(tipping_username, current_time)
                                     random_data_logger(tipping_username, parent_name, current_time, str(txid))
 
@@ -99,7 +107,7 @@ def main():
                             send_message(tipping_username, f"The user you tried to tip {parent_name} has not opted in to the Finite ASA."
                                                        f" Let them know about this!")
                             send_message(parent_name, f"{tipping_username} tried to tip you with a Finite ASA. Unfortuately, the bot was unable to "
-                                                       f"process the tip as you have not opted into the ASA. Find out how to do so here - >")
+                                                       f"process the tip as you have not opted into the ASA. Find out how to do so here - >{bot_instruction_page}")
 
                             log_post(comment.id)
                     else:
