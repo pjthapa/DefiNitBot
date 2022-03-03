@@ -1,5 +1,6 @@
 # DefiNitBot
-<h3><ul>A Tipbot for reddit using the cryptocurrency Algorand to tip layer-2 token Definite.</ul></h3>
+<h3>A Tipbot for reddit using the cryptocurrency Algorand to tip layer-2 token Definite.<br /></h3>
+Uses Algorand's PyTeal to send tips and  implements a few simple data structures to keep track of users of the bot.</h3>
 
 <h2> How to use the bot:</h2><br/>
 <h5>1) Opt in to use the bot in reddit</h5>
