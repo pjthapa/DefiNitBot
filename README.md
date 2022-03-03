@@ -18,3 +18,4 @@ Uses Algorand's PyTeal to send tips and  implements a few simple data structures
   Reply !Definitely! to any posts or comments in r/Finite_ASA and the bot will tip the user (provided that the user has registered their account with the bot). The command is not case sensitive so no need to worry about that.
   
   <h2> HAPPY TIPPING! </h2>
+~~~The tip bot is currently discontinued. I will look to be back soon~~~
