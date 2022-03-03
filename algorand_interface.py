@@ -100,7 +100,7 @@ def opt_in(account_address, account_key, asset_id):
         # print_asset_holding(algod_client, account_address, asset_id)
 
 
-def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267, tip_amount = 0 ) -> tuple:
+def tip_finite(sender_key, sender: str, account_to_tip: str, asset_id=400593267, tip_amount = 0 ) -> str:
     """
     :param sender_key: private key that needs to be acquired locally
     :param account_to_tip: 10 DefiNite
