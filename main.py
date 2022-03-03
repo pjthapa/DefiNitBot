@@ -3,6 +3,7 @@ from comment_handler import check_for_read, log_post
 from inbox_handler import check_opted_user, log_user, get_user_wallet, log_errors
 from algorand_interface import tip_finite
 from utilities import time_validity, get_current_time_string, random_number, random_data_logger
+from templates import get_algo_key
 
 # driver code
 
@@ -34,6 +35,7 @@ def main():
                                             f"as the subject and the wallet as the address."
                                        f"Consider donating to the Tip Bot at this wallet: {tip_bot_page}")
 
+            #To-DO: implement changing wallets for user
             # elif message.subject.lower == "change wallet":
             #     user_wallet_address = message.body
             #
@@ -49,16 +51,17 @@ def main():
             message.mark_read()
 
         except:
-            message.mark_read()                                                                                           # create a function to log the errors: The functions should log the timestamp, the message and the user that made the message.
-            print(f"Issue with reading this message {message.body} from {user.name}")# needs to log this error instead
+            message.mark_read()                                                                      # create a function to log the errors: The functions should log the timestamp, the message and the user that made the message.
+            print(f"Issue with reading this message {message.body} from {user.name}")               # needs to log this error instead
             log_errors(f"(error opting {message.body}, from {message.author.name}", get_current_time_string())
             send_message(f"There is an issue with the bot currently. The TipBot is unable to opt you in unfortunately")
+
     # check subs that opt into the bot
     for sub in subreddit:
         posts = get_posts(sub, limit=100)
         list_of_comment_tree = get_comments(posts)
 
-        # read comments for "!nite them!"
+        # read comments for "!definitely!"
         for comment_tree in list_of_comment_tree:
             for comment in comment_tree.list():
 
@@ -76,7 +79,7 @@ def main():
                         if check_opted_user(parent_name):
                             wallet_to_tip = get_user_wallet(parent_name)
 
-                            sender_key = "qqoUzHOFoPNc7JfNq1T/ZwR9ZBvok/lXJisn8gjFMF4LpvMLbxPqkoFG3vg4g/eWmPamlh1ByvpeqY7oznlu9Q=="                                 # add central wallet address
+                            sender_key = get_algo_key()                                 # add central wallet address private key
                             sender_address = "BOTPGC3PCPVJFAKG334DRA7XS2MPNJUWDVA4V6S6VGHORTTZN32QBTBC6E"                                                           #change this too
 
                             current_time = get_current_time_string()
